@@ -4,6 +4,7 @@ require_relative 'pact_helper'
 
 describe "BarClient", :pact => true do
 
+  # test regexp
   it "can retrieve a thing"  do
       bar_service.
         upon_receiving("a retrieve thing request").with({
@@ -16,7 +17,33 @@ describe "BarClient", :pact => true do
         headers: { 'Content-Type' => 'application/json' },
         body: {
           thing: Pact.like({test: "My thing", bar: "Another thing"}),
-          array: Pact.each_like(1)
+          array: Pact.each_like(1),
+          nested: {
+            long: {
+              path: {
+                to: {
+                  a: {
+                    person: {
+                      firstName: 'Foo',
+                      lastName: 'Bar',
+                      driversLicence: Pact.term(/ABC\d+/, "ABC567")
+                    }
+                  }
+                }
+              }
+            }
+          },
+          address: {
+            street: "200 Bourke St",
+            suburb: "Melbourne"
+          },
+          phone: "0412 746 345",
+          mother: "Mary",
+          father: nil,
+          favouriteColours: ["red"],
+          favouriteMovies: ["Jaws", "The Sound of Music"],
+          children: Pact.each_like(name: "Susan", age: 7),
+          parents: [{name: "Adam"}, {name: "Eve"}]
         }
       })
 

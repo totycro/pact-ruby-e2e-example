@@ -7,8 +7,8 @@ This code base is _not_ intended as an example of a best practice pact implement
 
 ### Clone the codebase
 
-    git clone git@github.com:YOUR_USERNAME/pact-ruby-issue-recreator.git
-    cd pact-ruby-issue-recreator
+    git clone git@github.com:YOUR_USERNAME/pact-ruby-e2e-example.git
+    cd pact-ruby-e2e-example
 
 ### Set the gem versions you are using
 
