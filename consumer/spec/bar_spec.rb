@@ -4,13 +4,12 @@ require_relative 'pact_helper'
 
 describe "BarClient", :pact => true do
 
-  # test regexp
   it "can retrieve a thing"  do
       bar_service.
         upon_receiving("a retrieve thing request").with({
         method: :get,
         path: '/thing',
-        headers: {'Accept' => 'application/json'}
+        headers: {'Accept' => Pact.term(/application\/.*json/, "application/json")}
       }).
         will_respond_with({
         status: 200,
