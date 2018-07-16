@@ -14,7 +14,9 @@ describe "BarClient", :pact => true do
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
       body: {
-        factories: Pact.each_like({ location: "Sydney", capacity: 5 }, { min: 3 })
+          outer: Pact.like({
+              factories: Pact.each_like({ location: "Sydney", capacity: 5 }, { min: 3 })
+          })
       }
     })
 

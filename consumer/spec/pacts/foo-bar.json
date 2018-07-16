@@ -21,26 +21,31 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "factories": [
-            {
-              "location": "Sydney",
-              "capacity": 5
-            },
-            {
-              "location": "Sydney",
-              "capacity": 5
-            },
-            {
-              "location": "Sydney",
-              "capacity": 5
-            }
-          ]
+          "outer": {
+            "factories": [
+              {
+                "location": "Sydney",
+                "capacity": 5
+              },
+              {
+                "location": "Sydney",
+                "capacity": 5
+              },
+              {
+                "location": "Sydney",
+                "capacity": 5
+              }
+            ]
+          }
         },
         "matchingRules": {
-          "$.body.factories": {
+          "$.body.outer": {
+            "match": "type"
+          },
+          "$.body.outer.factories": {
             "min": 3
           },
-          "$.body.factories[*].*": {
+          "$.body.outer.factories[*].*": {
             "match": "type"
           }
         }
